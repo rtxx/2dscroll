@@ -3,15 +3,17 @@ function loadGlobalVars()
   gameVars = {}
 
   -- loading libs
-  screen        = require("libs/push/push")
-  scenesInit    = require("libs/scenery/scenery")
-  flux          = require("libs/flux/flux")
-  bump          = require("libs/bump/bump")
-  class         = require("libs/middleclass/middleclass")
-  sti           = require("libs/sti/sti")
-  camera        = require("libs/STALKER-X/Camera")
-  anim          = require("libs/anim8/anim8")
-  tween         = require("libs/tween/tween")
+  screen        = require("lib/push/push")
+  scenesInit    = require("lib/scenery/scenery")
+  flux          = require("lib/flux/flux")
+  bump          = require("lib/bump/bump")
+  class         = require("lib/middleclass/middleclass")
+  sti           = require("lib/sti/sti")
+  camera        = require("lib/STALKER-X/Camera")
+  anim          = require("lib/anim8/anim8")
+  tween         = require("lib/tween/tween")
+  yui           = require("lib/yui")
+
   
   -- loading game class's
   Map       = require("src/map")
@@ -21,6 +23,10 @@ function loadGlobalVars()
   Dumga     = require("src/entities/dumga")
   
   -- assets
+  -- fonts
+  font                      = {}
+  font.menu                 = "assets/fonts/pixeldroidMenuRegular.ttf"
+
   -- maps
   maps                      = {}
   maps.lvl0                 = {} 
@@ -53,6 +59,7 @@ end
 function initGame()
   loadGlobalVars()
   gameVars.name             = "2dscroll"
+  gameVars.version          = "alpha 1"
   gameVars.author           = "Rui 'redbeard' Teixeira"
 
   gameVars.genericError     = "Oh no! Something went wrong... "
@@ -135,7 +142,8 @@ function initGame()
   scenes:load()
 
   -- initialize ui
-  
+  defaultFont = love.graphics.newFont(font.menu, 16)
+  menuFont = love.graphics.newFont(font.menu, 32)
   
   -- initialize sound
   love.audio.setVolume(0.1)
